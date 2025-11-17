@@ -50,3 +50,17 @@ type User = {
 function filterActiveUsers(arr: User[]): User[] {
   return arr.filter((item) => item.isActive);
 }
+
+type Book = {
+  title: string;
+  author: string;
+  publishedYear: number;
+  isAvailable: boolean;
+};
+
+function printBookDetails(value: Book) {
+  const isAvailable = value.isAvailable ? "Yes" : "No";
+  const result = `Title: ${value.title}, Author: ${value.author}, Published: ${value.publishedYear}, Available: ${isAvailable}`;
+
+  console.log(result);
+}
