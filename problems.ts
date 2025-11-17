@@ -47,3 +47,4 @@ const books = [
 ];
 
 console.log(filterByRating(books));
+console.log(books);
