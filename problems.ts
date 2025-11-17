@@ -40,11 +40,13 @@ function filterByRating(arr: RatedItem[]): RatedItem[] {
   return arr.filter((item) => item.rating >= 4.0);
 }
 
-const books = [
-  { title: "Book A", rating: 4.5 },
-  { title: "Book B", rating: 3.2 },
-  { title: "Book C", rating: 5.0 },
-];
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+};
 
-console.log(filterByRating(books));
-console.log(books);
+function filterActiveUsers(arr: User[]): User[] {
+  return arr.filter((item) => item.isActive);
+}
