@@ -1,5 +1,16 @@
-function formatValue(value: string | number | boolean) {
-  if (typeof value == "string") return value.toUpperCase();
-  else if (typeof value == "number") return value * 10;
-  else return !value;
+function formatValue(
+  value: string | number | boolean
+): string | number | boolean {
+  switch (typeof value) {
+    case "string":
+      return value.toUpperCase();
+    case "number":
+      return value * 10;
+    case "boolean":
+      return !value;
+    default:
+      return value;
+  }
 }
+
+console.log(formatValue(""));
