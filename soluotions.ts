@@ -13,31 +13,34 @@ function formatValue(
   }
 }
 
-function getLength(value: string | any[]): number {
-  if (Array.isArray(value)) return value.length;
-  else return value.length;
+function getLength(value: string | (string | number)[]): number {
+  if (Array.isArray(value)) {
+    return value.length;
+  }
+  return value.length;
 }
 
 class Person {
+  name: string;
+  age: number;
+
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
   }
 
-  getDetails() {
+  getDetails(): string {
     return `Name: ${this.name}, Age: ${this.age}`;
   }
-  name: string = "";
-  age: number = 0;
 }
 
 type RatedItem = {
   title: string;
-  rating: 1 | 2 | 3 | 4 | 5;
+  rating: number;
 };
 
 function filterByRating(arr: RatedItem[]): RatedItem[] {
-  return arr.filter((item) => item.rating >= 4.0);
+  return arr.filter((item) => item.rating >= 4);
 }
 
 type User = {
@@ -48,49 +51,42 @@ type User = {
 };
 
 function filterActiveUsers(arr: User[]): User[] {
-  return arr.filter((item) => item.isActive);
+  return arr.filter((user) => user.isActive);
 }
 
-type Book = {
+interface Book {
   title: string;
   author: string;
   publishedYear: number;
   isAvailable: boolean;
-};
+}
 
-function printBookDetails(value: Book) {
-  const isAvailable = value.isAvailable ? "Yes" : "No";
-  const result = `Title: ${value.title}, Author: ${value.author}, Published: ${value.publishedYear}, Available: ${isAvailable}`;
-
-  console.log(result);
+function printBookDetails(book: Book): string {
+  const availableStatus = book.isAvailable ? "Yes" : "No";
+  return `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${availableStatus}`;
 }
 
 function getUniqueValues(
-  array1: (string | number)[],
-  array2: (string | number)[]
-): (string | number)[] {
-  const result: (string | number)[] = [];
+  array1: (number | string)[],
+  array2: (number | string)[]
+): (number | string)[] {
+  const result: (number | string)[] = [];
 
-  function existsInArray(
-    arr: (string | number)[],
-    value: string | number
-  ): boolean {
+  function exists(arr: (number | string)[], value: number | string): boolean {
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i] === value) {
-        return true;
-      }
+      if (arr[i] === value) return true;
     }
     return false;
   }
 
   for (let i = 0; i < array1.length; i++) {
-    if (!existsInArray(result, array1[i])) {
+    if (!exists(result, array1[i])) {
       result[result.length] = array1[i];
     }
   }
 
   for (let i = 0; i < array2.length; i++) {
-    if (!existsInArray(result, array2[i])) {
+    if (!exists(result, array2[i])) {
       result[result.length] = array2[i];
     }
   }
@@ -108,11 +104,11 @@ type Product = {
 function calculateTotalPrice(products: Product[]): number {
   return products
     .map((product) => {
-      const basePrice = product.price * product.quantity;
+      const total = product.price * product.quantity;
       const discountAmount = product.discount
-        ? (basePrice * product.discount) / 100
+        ? (total * product.discount) / 100
         : 0;
-      return basePrice - discountAmount;
+      return total - discountAmount;
     })
-    .reduce((total, current) => total + current, 0);
+    .reduce((sum, current) => sum + current, 0);
 }
