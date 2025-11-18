@@ -37,4 +37,42 @@ role: string;
 type Admin = User & { role: string };
 ```
 
-Interface অবজেক্টের গঠন নির্ধারণে বেশি উপযোগী, আর type alias জটিল টাইপ তৈরিতে কার্যকর।
+## Interface অবজেক্টের গঠন নির্ধারণে বেশি উপযোগী, আর type alias জটিল টাইপ তৈরিতে কার্যকর।
+
+## 2, any, unknown, এবং never এর পার্থক্য
+
+### any
+
+যেকোনো টাইপ গ্রহণ করে।
+
+টাইপ-চেকিং বন্ধ হয়ে যায়।
+
+```
+ts
+let value: any = 42;
+value = "Hello"; // কোনো error নেই
+unknown
+```
+
+যেকোনো মান রাখতে পারে, কিন্তু ব্যবহার করার আগে টাইপ চেক করতে হয়।
+
+```
+ts
+let input: unknown = "Hello";
+if (typeof input === "string") {
+  console.log(input.toUpperCase());
+}
+```
+
+never
+
+এমন টাইপ যা কখনো ঘটে না। সাধারণত error বা infinite loop এর ক্ষেত্রে ব্যবহৃত হয়।
+
+```
+ts
+function throwError(message: string): never {
+  throw new Error(message);
+}
+```
+
+any ঝুঁকিপূর্ণ, unknown নিরাপদ, আর never অসম্ভব পরিস্থিতি বোঝায়।
