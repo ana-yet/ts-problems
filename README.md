@@ -51,8 +51,9 @@ type Admin = User & { role: string };
 ts
 let value: any = 42;
 value = "Hello"; // কোনো error নেই
-unknown
 ```
+
+### unknown
 
 যেকোনো মান রাখতে পারে, কিন্তু ব্যবহার করার আগে টাইপ চেক করতে হয়।
 
@@ -64,7 +65,7 @@ if (typeof input === "string") {
 }
 ```
 
-never
+### never
 
 এমন টাইপ যা কখনো ঘটে না। সাধারণত error বা infinite loop এর ক্ষেত্রে ব্যবহৃত হয়।
 
