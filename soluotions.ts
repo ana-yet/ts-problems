@@ -64,3 +64,36 @@ function printBookDetails(value: Book) {
 
   console.log(result);
 }
+
+function getUniqueValues(
+  array1: (string | number)[],
+  array2: (string | number)[]
+): (string | number)[] {
+  const result: (string | number)[] = [];
+
+  function existsInArray(
+    arr: (string | number)[],
+    value: string | number
+  ): boolean {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === value) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  for (let i = 0; i < array1.length; i++) {
+    if (!existsInArray(result, array1[i])) {
+      result[result.length] = array1[i];
+    }
+  }
+
+  for (let i = 0; i < array2.length; i++) {
+    if (!existsInArray(result, array2[i])) {
+      result[result.length] = array2[i];
+    }
+  }
+
+  return result;
+}
