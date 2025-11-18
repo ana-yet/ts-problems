@@ -36,7 +36,7 @@ class Person {
 
 type RatedItem = {
   title: string;
-  rating: number;
+  rating: 1 | 2 | 3 | 4 | 5;
 };
 
 function filterByRating(arr: RatedItem[]): RatedItem[] {
